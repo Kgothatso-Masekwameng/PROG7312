@@ -49,7 +49,7 @@ To test the multipart file-upload endpoint (not expressible cleanly in a
 curl -F "file=@./some-config.json" http://localhost:5080/api/sensors/24:6F:28:AE:11:9C/attachments
 ```
 
-## Requiremen → endpoint map (SmartX.Api)
+## Requirement → endpoint map (SmartX.Api)
 
 | Brief requirement | Endpoint(s) |
 |---|---|
