@@ -4,7 +4,7 @@
 > files have been written carefully but **not compiled here** — build and run
 > them in Visual Studio 2022 (17.10+) or the `dotnet` CLI on your own machine.
 
-## Solution layout
+## Solution layou
 
 ```
 SmartX.sln
