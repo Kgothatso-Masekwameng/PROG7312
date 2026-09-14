@@ -1,0 +1,182 @@
+<Window x:Class="SmartX.Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Smart-X Gateway" Height="620" Width="1000"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource Paper}"
+        FontFamily="{StaticResource FontBody}"
+        TextOptions.TextFormattingMode="Ideal"
+        UseLayoutRounding="True">
+
+    <Window.Resources>
+
+        <!-- One tile style, two states. Keeps the markup boring. -->
+        <Style x:Key="PillarTile" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource Paper}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource PaperEdge}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="{StaticResource RadiusMd}"/>
+            <Setter Property="Margin" Value="0,0,16,0"/>
+            <Setter Property="Padding" Value="24,28,24,24"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <Style x:Key="PillarTileDisabled" TargetType="Border" BasedOn="{StaticResource PillarTile}">
+            <Setter Property="Cursor" Value="Arrow"/>
+            <Setter Property="Opacity" Value="0.55"/>
+        </Style>
+
+        <Style x:Key="PillarIndex" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource FontMono}"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Foreground" Value="{StaticResource InkMuted}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+
+        <Style x:Key="PillarTitle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource FontDisplay}"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Foreground" Value="{StaticResource Ink}"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="0,10,0,0"/>
+        </Style>
+
+        <Style x:Key="PillarSubtitle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="{StaticResource InkMuted}"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="0,6,0,0"/>
+        </Style>
+
+        <Style x:Key="PillarStatus" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource FontMono}"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Margin" Value="0,22,0,0"/>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Margin="56,48,56,48">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Grid.Row="0"
+                   Text="Smart-X"
+                   FontFamily="{StaticResource FontDisplay}"
+                   FontSize="40"
+                   Foreground="{StaticResource Ink}"/>
+
+        <TextBlock Grid.Row="1"
+                   Margin="2,6,0,0"
+                   FontSize="14"
+                   Foreground="{StaticResource InkMuted}"
+                   Text="Hybrid IoT Ecosystem Gateway"/>
+        <TextBlock Grid.Row="1"
+                   Margin="2,26,0,0"
+                   FontSize="12"
+                   FontFamily="{StaticResource FontMono}"
+                   Foreground="{StaticResource InkMuted}"
+                   Text="Select an architectural pillar to continue."/>
+
+        <!-- Hairline divider instead of a boxed header -->
+        <Border Grid.Row="2"
+                VerticalAlignment="Top"
+                Height="1"
+                Background="{StaticResource PaperEdge}"
+                Margin="0,56,0,0"/>
+
+        <!-- Pillars -->
+        <UniformGrid Grid.Row="2"
+                     Columns="3" Rows="1"
+                     Margin="0,80,0,0"
+                     VerticalAlignment="Top">
+
+            <!-- Pillar 01 — available -->
+            <Border Style="{StaticResource PillarTile}"
+                    BorderBrush="{StaticResource Ink}"
+                    MouseLeftButtonUp="OnIngestionTileClick">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Style="{StaticResource PillarIndex}" Text="01 / PART 1"/>
+
+                    <StackPanel Grid.Row="1" VerticalAlignment="Top">
+                        <TextBlock Style="{StaticResource PillarTitle}" Text="Sensor Data Ingestion"/>
+                        <TextBlock Style="{StaticResource PillarSubtitle}" Text="Telemetry streams, device handshakes, and payload normalization."/>
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="2"
+                               Style="{StaticResource PillarStatus}"
+                               Foreground="{StaticResource SignalOk}"
+                               Text="● AVAILABLE"/>
+                </Grid>
+            </Border>
+
+            <!-- Pillar 02 — disabled -->
+            <Border Style="{StaticResource PillarTileDisabled}" IsHitTestVisible="False">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Style="{StaticResource PillarIndex}" Text="02 / PART 2"/>
+
+                    <StackPanel Grid.Row="1" VerticalAlignment="Top">
+                        <TextBlock Style="{StaticResource PillarTitle}" Text="Real-Time Command Stream"/>
+                        <TextBlock Style="{StaticResource PillarSubtitle}" Text="Live dispatch, acknowledgements, and command history."/>
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="2"
+                               Style="{StaticResource PillarStatus}"
+                               Foreground="{StaticResource InkMuted}"
+                               Text="○ NOT YET"/>
+                </Grid>
+            </Border>
+
+            <!-- Pillar 03 — disabled -->
+            <Border Style="{StaticResource PillarTileDisabled}"
+                    Margin="0"
+                    IsHitTestVisible="False">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Style="{StaticResource PillarIndex}" Text="03 / TASK 3"/>
+
+                    <StackPanel Grid.Row="1" VerticalAlignment="Top">
+                        <TextBlock Style="{StaticResource PillarTitle}" Text="Network Topology"/>
+                        <TextBlock Style="{StaticResource PillarSubtitle}" Text="Mesh routing, link quality, and node reachability."/>
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="2"
+                               Style="{StaticResource PillarStatus}"
+                               Foreground="{StaticResource InkMuted}"
+                               Text="○ NOT YET"/>
+                </Grid>
+            </Border>
+
+        </UniformGrid>
+
+        <!-- Footer: tiny build/status line, mono, quiet -->
+        <TextBlock Grid.Row="3"
+                   Margin="2,0,0,0"
+                   FontFamily="{StaticResource FontMono}"
+                   FontSize="11"
+                   Foreground="{StaticResource InkMuted}"
+                   Text="smart-x gateway  ·  v0.1  ·  ready"/>
+    </Grid>
+</Window>
