@@ -167,4 +167,5 @@ Console.WriteLine($"Deployment valid: {result.IsValid}");
 var health = new SensorHealth("ESP32-014");
 health.RecordReading(withinExpectedRange: true, DateTimeOffset.UtcNow);
 Console.WriteLine($"Score={health.Score}, State={health.State}");
-```
+
+ST10440843
