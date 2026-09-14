@@ -1,6 +1,6 @@
 # Smart-X — Task 1 (Sensor Data Ingestion and Telemetry)
 
-> Buil for .NET 10. This sandbox does not have the .NET SDK installed, so these
+> Build for .NET 10. This sandbox does not have the .NET SDK installed, so these
 > files have been written carefully but **not compiled here** — build and run
 > them in Visual Studio 2022 (17.10+) or the `dotnet` CLI on your own machine.
 
@@ -49,7 +49,7 @@ To test the multipart file-upload endpoint (not expressible cleanly in a
 curl -F "file=@./some-config.json" http://localhost:5080/api/sensors/24:6F:28:AE:11:9C/attachments
 ```
 
-## Requirement → endpoint map (SmartX.Api)
+## Requiremen → endpoint map (SmartX.Api)
 
 | Brief requirement | Endpoint(s) |
 |---|---|
