@@ -1,6 +1,6 @@
 # Smart-X — Task 1 (Sensor Data Ingestion and Telemetry)
 
-> Build fo .NET 10. This sandbox does not have the .NET SDK installed, so these
+> Build for .NET 10. This sandbox does not have the .NET SDK installed, so these
 > files have been written carefully but **not compiled here** — build and run
 > them in Visual Studio 2022 (17.10+) or the `dotnet` CLI on your own machine.
 
